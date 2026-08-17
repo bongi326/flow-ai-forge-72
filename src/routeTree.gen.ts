@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppEmailRouteImport } from './routes/app.email'
+import { Route as AppSummarizerRouteImport } from './routes/app.summarizer'
 import { Route as AppWorkspaceRouteImport } from './routes/app.workspace'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const AppEmailRoute = AppEmailRouteImport.update({
   path: '/email',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSummarizerRoute = AppSummarizerRouteImport.update({
+  id: '/summarizer',
+  path: '/summarizer',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppWorkspaceRoute = AppWorkspaceRouteImport.update({
   id: '/workspace',
   path: '/workspace',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/app/dashboard': typeof AppDashboardRoute
   '/app/email': typeof AppEmailRoute
+  '/app/summarizer': typeof AppSummarizerRoute
   '/app/workspace': typeof AppWorkspaceRoute
   '/app/': typeof AppIndexRoute
 }
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/email': typeof AppEmailRoute
+  '/app/summarizer': typeof AppSummarizerRoute
   '/app/workspace': typeof AppWorkspaceRoute
   '/app': typeof AppIndexRoute
 }
@@ -68,21 +76,35 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/app/dashboard': typeof AppDashboardRoute
   '/app/email': typeof AppEmailRoute
+  '/app/summarizer': typeof AppSummarizerRoute
   '/app/workspace': typeof AppWorkspaceRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/app' | '/app/dashboard' | '/app/email' | '/app/workspace' | '/app/'
+    | '/'
+    | '/app'
+    | '/app/dashboard'
+    | '/app/email'
+    | '/app/summarizer'
+    | '/app/workspace'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/app/dashboard' | '/app/email' | '/app/workspace' | '/app'
+  to:
+    | '/'
+    | '/app/dashboard'
+    | '/app/email'
+    | '/app/summarizer'
+    | '/app/workspace'
+    | '/app'
   id:
     | '__root__'
     | '/'
     | '/app'
     | '/app/dashboard'
     | '/app/email'
+    | '/app/summarizer'
     | '/app/workspace'
     | '/app/'
   fileRoutesById: FileRoutesById
@@ -129,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppEmailRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/summarizer': {
+      id: '/app/summarizer'
+      path: '/summarizer'
+      fullPath: '/app/summarizer'
+      preLoaderRoute: typeof AppSummarizerRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/workspace': {
       id: '/app/workspace'
       path: '/workspace'
@@ -142,6 +171,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppEmailRoute: typeof AppEmailRoute
+  AppSummarizerRoute: typeof AppSummarizerRoute
   AppWorkspaceRoute: typeof AppWorkspaceRoute
   AppIndexRoute: typeof AppIndexRoute
 }
@@ -149,6 +179,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppEmailRoute: AppEmailRoute,
+  AppSummarizerRoute: AppSummarizerRoute,
   AppWorkspaceRoute: AppWorkspaceRoute,
   AppIndexRoute: AppIndexRoute,
 }

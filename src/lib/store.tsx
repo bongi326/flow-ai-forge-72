@@ -226,14 +226,18 @@ export function pushNotification(
   };
 }
 
+export function toMinutes(time: string) {
+  const parts = time.split(":");
+  const h = Number(parts[0] ?? 0);
+  const m = Number(parts[1] ?? 0);
+  return (Number.isFinite(h) ? h : 0) * 60 + (Number.isFinite(m) ? m : 0);
+}
+
 export function minutesBetween(start: string, end: string) {
-  const [sh, sm] = start.split(":").map(Number);
-  const [eh, em] = end.split(":").map(Number);
-  return eh * 60 + em - (sh * 60 + sm);
+  return toMinutes(end) - toMinutes(start);
 }
 
 export function addMinutes(time: string, minutes: number) {
-  const [h, m] = time.split(":").map(Number);
-  const total = Math.max(0, Math.min(24 * 60 - 1, h * 60 + m + minutes));
+  const total = Math.max(0, Math.min(24 * 60 - 1, toMinutes(time) + minutes));
   return `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
 }

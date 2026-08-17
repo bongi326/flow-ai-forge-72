@@ -86,6 +86,7 @@ export interface AIResult {
   participants?: string[];
   deadlines?: { label: string; date: string }[];
   priorities?: string[];
+  followUps?: string[];
   tasks?: Array<{
     title: string;
     description?: string;

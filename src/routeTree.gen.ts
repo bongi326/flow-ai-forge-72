@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as AppIndexRouteImport } from './routes/app.index'
 import { Route as AppDashboardRouteImport } from './routes/app.dashboard'
 import { Route as AppEmailRouteImport } from './routes/app.email'
+import { Route as AppHistoryRouteImport } from './routes/app.history'
 import { Route as AppScheduleRouteImport } from './routes/app.schedule'
 import { Route as AppSummarizerRouteImport } from './routes/app.summarizer'
 import { Route as AppTasksRouteImport } from './routes/app.tasks'
@@ -44,6 +45,11 @@ const AppEmailRoute = AppEmailRouteImport.update({
   path: '/email',
   getParentRoute: () => AppRoute,
 } as any)
+const AppHistoryRoute = AppHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppScheduleRoute = AppScheduleRouteImport.update({
   id: '/schedule',
   path: '/schedule',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/app/dashboard': typeof AppDashboardRoute
   '/app/email': typeof AppEmailRoute
+  '/app/history': typeof AppHistoryRoute
   '/app/schedule': typeof AppScheduleRoute
   '/app/summarizer': typeof AppSummarizerRoute
   '/app/tasks': typeof AppTasksRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app/dashboard': typeof AppDashboardRoute
   '/app/email': typeof AppEmailRoute
+  '/app/history': typeof AppHistoryRoute
   '/app/schedule': typeof AppScheduleRoute
   '/app/summarizer': typeof AppSummarizerRoute
   '/app/tasks': typeof AppTasksRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/app/dashboard': typeof AppDashboardRoute
   '/app/email': typeof AppEmailRoute
+  '/app/history': typeof AppHistoryRoute
   '/app/schedule': typeof AppScheduleRoute
   '/app/summarizer': typeof AppSummarizerRoute
   '/app/tasks': typeof AppTasksRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/dashboard'
     | '/app/email'
+    | '/app/history'
     | '/app/schedule'
     | '/app/summarizer'
     | '/app/tasks'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app/dashboard'
     | '/app/email'
+    | '/app/history'
     | '/app/schedule'
     | '/app/summarizer'
     | '/app/tasks'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/dashboard'
     | '/app/email'
+    | '/app/history'
     | '/app/schedule'
     | '/app/summarizer'
     | '/app/tasks'
@@ -175,6 +187,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppEmailRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/history': {
+      id: '/app/history'
+      path: '/history'
+      fullPath: '/app/history'
+      preLoaderRoute: typeof AppHistoryRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/schedule': {
       id: '/app/schedule'
       path: '/schedule'
@@ -209,6 +228,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppEmailRoute: typeof AppEmailRoute
+  AppHistoryRoute: typeof AppHistoryRoute
   AppScheduleRoute: typeof AppScheduleRoute
   AppSummarizerRoute: typeof AppSummarizerRoute
   AppTasksRoute: typeof AppTasksRoute
@@ -219,6 +239,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppEmailRoute: AppEmailRoute,
+  AppHistoryRoute: AppHistoryRoute,
   AppScheduleRoute: AppScheduleRoute,
   AppSummarizerRoute: AppSummarizerRoute,
   AppTasksRoute: AppTasksRoute,

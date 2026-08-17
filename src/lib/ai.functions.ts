@@ -26,7 +26,7 @@ export const runAI = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     try {
       const result = await runPrompt(data.mode as AIMode, data.input, data.context);
-      return { ok: true as const, result };
+      return { ok: true as const, json: JSON.stringify(result) };
     } catch (error) {
       if (error instanceof GatewayError) {
         return { ok: false as const, status: error.status, message: error.message };

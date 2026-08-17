@@ -28,7 +28,7 @@ function SchedulePage() {
   const open = state.tasks.filter((t) => t.status !== "completed");
 
   async function generate() {
-    const brief = `Working hours: ${state.settings.workStart}–${state.settings.workEnd}. Break length: ${state.settings.breakMinutes} minutes.\nTasks:\n${open
+    const brief = `Working hours: ${state.settings.workStart}–${state.settings.workEnd}. Include short breaks.\nTasks:\n${open
       .map((t) => `- ${t.title} (${t.priority}, ~${t.durationMinutes} min)`)
       .join("\n")}`;
     const res = await run("schedule", brief);

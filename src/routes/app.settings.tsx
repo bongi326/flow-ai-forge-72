@@ -141,7 +141,7 @@ function SettingsPage() {
       <SectionCard title="Data">
         <button
           onClick={() => {
-            if (typeof window !== "undefined") window.localStorage.removeItem("smartflow-state");
+            if (typeof window !== "undefined") window.localStorage.removeItem("smartflow:v1");
             toast.success("Demo data cleared — reload to reseed.");
           }}
           className="rounded-lg border border-destructive/40 px-4 py-2 text-sm text-destructive hover:bg-destructive/10"

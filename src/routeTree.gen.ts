@@ -17,6 +17,7 @@ import { Route as AppEmailRouteImport } from './routes/app.email'
 import { Route as AppHistoryRouteImport } from './routes/app.history'
 import { Route as AppNotesRouteImport } from './routes/app.notes'
 import { Route as AppScheduleRouteImport } from './routes/app.schedule'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppSummarizerRouteImport } from './routes/app.summarizer'
 import { Route as AppTasksRouteImport } from './routes/app.tasks'
 import { Route as AppWorkspaceRouteImport } from './routes/app.workspace'
@@ -61,6 +62,11 @@ const AppScheduleRoute = AppScheduleRouteImport.update({
   path: '/schedule',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppSummarizerRoute = AppSummarizerRouteImport.update({
   id: '/summarizer',
   path: '/summarizer',
@@ -85,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/app/history': typeof AppHistoryRoute
   '/app/notes': typeof AppNotesRoute
   '/app/schedule': typeof AppScheduleRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/summarizer': typeof AppSummarizerRoute
   '/app/tasks': typeof AppTasksRoute
   '/app/workspace': typeof AppWorkspaceRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/app/history': typeof AppHistoryRoute
   '/app/notes': typeof AppNotesRoute
   '/app/schedule': typeof AppScheduleRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/summarizer': typeof AppSummarizerRoute
   '/app/tasks': typeof AppTasksRoute
   '/app/workspace': typeof AppWorkspaceRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/app/history': typeof AppHistoryRoute
   '/app/notes': typeof AppNotesRoute
   '/app/schedule': typeof AppScheduleRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/summarizer': typeof AppSummarizerRoute
   '/app/tasks': typeof AppTasksRoute
   '/app/workspace': typeof AppWorkspaceRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/app/history'
     | '/app/notes'
     | '/app/schedule'
+    | '/app/settings'
     | '/app/summarizer'
     | '/app/tasks'
     | '/app/workspace'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/app/history'
     | '/app/notes'
     | '/app/schedule'
+    | '/app/settings'
     | '/app/summarizer'
     | '/app/tasks'
     | '/app/workspace'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/app/history'
     | '/app/notes'
     | '/app/schedule'
+    | '/app/settings'
     | '/app/summarizer'
     | '/app/tasks'
     | '/app/workspace'
@@ -220,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppScheduleRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/summarizer': {
       id: '/app/summarizer'
       path: '/summarizer'
@@ -250,6 +269,7 @@ interface AppRouteChildren {
   AppHistoryRoute: typeof AppHistoryRoute
   AppNotesRoute: typeof AppNotesRoute
   AppScheduleRoute: typeof AppScheduleRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppSummarizerRoute: typeof AppSummarizerRoute
   AppTasksRoute: typeof AppTasksRoute
   AppWorkspaceRoute: typeof AppWorkspaceRoute
@@ -262,6 +282,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppHistoryRoute: AppHistoryRoute,
   AppNotesRoute: AppNotesRoute,
   AppScheduleRoute: AppScheduleRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppSummarizerRoute: AppSummarizerRoute,
   AppTasksRoute: AppTasksRoute,
   AppWorkspaceRoute: AppWorkspaceRoute,

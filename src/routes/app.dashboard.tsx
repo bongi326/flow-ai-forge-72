@@ -90,7 +90,7 @@ function Dashboard() {
       <header className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 sm:flex sm:items-end sm:justify-between">
         <div className="min-w-0">
           <h1 className="truncate font-tight text-2xl font-semibold sm:text-3xl">
-            {greeting(now.getHours())}, {(state.user?.name ?? state.settings.name).split(" ")[0]} 👋
+            {greeting(now.getHours())}, {(state.user?.name ?? state.settings.name).split(" ")[0]}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">Here's what needs your attention today.</p>
         </div>
@@ -189,7 +189,8 @@ function Dashboard() {
                   type="monotone"
                   dataKey="score"
                   stroke="var(--color-chart-1)"
-                  fill="var(--color-accent-soft)"
+                  fill="var(--color-chart-1)"
+                  fillOpacity={0.15}
                   strokeWidth={2}
                 />
               </AreaChart>
